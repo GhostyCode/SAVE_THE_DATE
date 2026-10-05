@@ -1,0 +1,297 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(56px, 9vh, 80px);
+  padding: 90px 16px 80px;
+  text-align: center;
+  background: radial-gradient(100% 70% at 50% 35%, #fbf9f4 0%, var(--color-ivory) 60%, var(--color-paper) 100%);
+}
+
+/* ── Composición del sobre abierto ── */
+.hero__stage {
+  position: relative;
+  width: min(440px, 82vw);
+  aspect-ratio: 440 / 540;
+}
+
+.hero__env-back,
+.hero__env-pocket {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  background-color: var(--color-onyx);
+}
+
+.hero__env-back {
+  bottom: 0;
+  height: 44%;
+  background-color: var(--color-onyx-dark);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero__env-flap {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 44%;
+  height: 20%;
+  background-color: var(--color-onyx-light);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.hero__env-pocket {
+  bottom: 0;
+  height: 38%;
+  z-index: 5;
+  clip-path: polygon(0 0, 50% 26%, 100% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+}
+
+.hero__env-pocket::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top right, transparent 49.5%, rgba(220, 195, 139, .4) 50%, transparent 50.6%),
+    linear-gradient(to top left, transparent 49.5%, rgba(220, 195, 139, .4) 50%, transparent 50.6%);
+}
+
+.hero__monogram {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  translate: -50% 0;
+  font-family: var(--font-calligraphy);
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  line-height: 1;
+  color: var(--color-gold);
+  white-space: nowrap;
+}
+
+.hero__monogram em {
+  font-style: normal;
+  font-size: .55em;
+  margin: 0 .1em;
+  opacity: .8;
+}
+
+/* ── Polaroids ── */
+.hero__polaroid {
+  position: absolute;
+  margin: 0;
+  padding: 5% 5% 15%;
+  background: #fbfaf6;
+  box-shadow: var(--shadow-card);
+}
+
+.hero__polaroid img {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05) brightness(1.03);
+}
+
+.hero__polaroid--a {
+  left: 4%;
+  top: 15%;
+  width: 40%;
+  rotate: -7deg;
+  z-index: 2;
+}
+
+.hero__polaroid--b {
+  left: 34%;
+  top: 1%;
+  width: 37%;
+  rotate: 3deg;
+  z-index: 1;
+}
+
+.hero__polaroid--a img { object-position: 50% 70%; }
+.hero__polaroid--b img { object-position: 50% 30%; }
+
+/* ── Sello circular “Toca para ver los detalles” ── */
+.hero__badge {
+  position: absolute;
+  right: 0;
+  top: 19%;
+  z-index: 3;
+  width: 32%;
+  aspect-ratio: 1;
+  padding: 0 4%;
+  text-align: center;
+  line-height: 1.1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: radial-gradient(circle at 35% 30%, var(--color-onyx-light), var(--color-onyx) 70%);
+  color: var(--color-gold-light);
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  transition: scale .4s var(--ease-elegant);
+}
+
+.hero__badge:hover,
+.hero__badge:focus-visible { scale: 1.05; }
+
+.hero__badge:focus-visible { outline: 1px solid var(--color-gold-deep); outline-offset: 4px; }
+
+.hero__badge::before {
+  content: "";
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 195, 139, .55);
+}
+
+.hero__badge-small {
+  font-family: var(--font-serif);
+  font-size: clamp(.5rem, 1.7vw, .66rem);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero__badge-big {
+  font-family: var(--font-didone);
+  font-size: clamp(.78rem, 2.8vw, 1.05rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ── Boleto ── */
+.hero__ticket {
+  --notch: 9px;
+  position: absolute;
+  left: 7%;
+  right: 6%;
+  top: 44%;
+  z-index: 4;
+  display: flex;
+  min-height: 25%;
+  rotate: -4deg;
+  background: #f8f4ea;
+  filter: drop-shadow(0 12px 16px rgba(30, 26, 14, .28));
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+.hero__ticket-stub {
+  flex: 0 0 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1.5px dotted var(--color-gold-deep);
+}
+
+.hero__ticket-stub span {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-family: var(--font-serif);
+  font-size: clamp(.5rem, 1.7vw, .66rem);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.hero__ticket-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6% 4% 7%;
+  color: var(--color-ink);
+}
+
+.hero__ticket-eyebrow {
+  font-size: clamp(.62rem, 2.2vw, .86rem);
+  letter-spacing: .14em;
+}
+
+.hero__ticket-date {
+  font-family: var(--font-didone);
+  font-size: clamp(1.8rem, 7.6vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: .1em;
+}
+
+.hero__ticket-script {
+  font-family: var(--font-hand);
+  font-size: clamp(1.25rem, 4.6vw, 1.75rem);
+  line-height: 1;
+  color: var(--color-gold-deep);
+  rotate: -3deg;
+}
+
+/* ── Flores ── */
+.hero__floral {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  overflow: visible;
+  transform-origin: top center;
+  animation: sway 10s ease-in-out infinite;
+}
+
+.hero__floral--l {
+  width: 50%;
+  left: -20%;
+  top: 26%;
+}
+
+.hero__floral--r {
+  width: 44%;
+  right: -17%;
+  top: 52%;
+  animation-delay: -5s;
+}
+
+/* ── Texto inferior ── */
+.hero__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero__names {
+  margin: 0 0 6px;
+  font-family: var(--font-calligraphy);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 6.4vw, 2.8rem);
+  line-height: 1.15;
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+
+.hero__date {
+  margin: 0;
+  font-size: clamp(1rem, 3.4vw, 1.25rem);
+  letter-spacing: .3em;
+  color: var(--color-ink);
+}
+
+.hero__date sup {
+  font-size: .55em;
+  letter-spacing: .1em;
+  margin: 0 .3em 0 .1em;
+  text-transform: lowercase;
+}
+
+.hero__place {
+  margin: 0;
+  font-size: clamp(.78rem, 2.6vw, .92rem);
+  letter-spacing: .3em;
+  color: var(--color-ink-soft);
+}
